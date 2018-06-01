@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="暴力阿桑">
 <meta property="og:description" content="代理模式特点： 1.执行者、被代理人（执行者就是代理人（媒婆），被代理人就是原操作者（相亲人）） 2.对于被代理人来说，这件事情一定是要做的，但是自己有不想做或者没有时间做（不专业），这时候就要找代理。 3.需要获取到被代理人的个人资料（执行者需要持有被代理对象的引用）。 代理模式关心的过程，不是结果。 总结：字节码重组 例子：AOP实现、拦截器、解耦、功能增强、租房中介、火车票黄牛、媒人、明星经">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-01T08:11:46.619Z">
+<meta property="og:updated_time" content="2018-06-01T08:57:21.035Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式">
 <meta name="twitter:description" content="代理模式特点： 1.执行者、被代理人（执行者就是代理人（媒婆），被代理人就是原操作者（相亲人）） 2.对于被代理人来说，这件事情一定是要做的，但是自己有不想做或者没有时间做（不专业），这时候就要找代理。 3.需要获取到被代理人的个人资料（执行者需要持有被代理对象的引用）。 代理模式关心的过程，不是结果。 总结：字节码重组 例子：AOP实现、拦截器、解耦、功能增强、租房中介、火车票黄牛、媒人、明星经">
@@ -377,7 +377,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,515
+                  3,514
                 </span>
               
 
@@ -447,7 +447,7 @@
 <h3 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h3><p>VGA-HDMI、充电头、插口转换<br>老系统运行了很久比较稳定，但是保持其稳定性，不便再去修改原来的code，但是又要为了兼容新的需求和标准（扩展），我们不得不在系统再去做一些文章。（向下兼容）也可以说是在原先的基础上扩展一些功能（增强、类似的功能），但是不要修改原来的逻辑，如果是是service调用servcie，这种跨功能的不叫适配器。一般来说适配器可以用继承或者拿到目标类的引用来做。<br>通常以Adapter结尾的就是适配器<br>一般适配器自己的接口(IAdaptor)和待适配的接口(IOther)是不同的，在于不同内容的转换，比如</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类适配器</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> <span class="keyword">extends</span> <span class="title">OtherImpl</span> <span class="keyword">implements</span> <span class="title">IAdaptor</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">adaptorMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"适配器方法，我要去适配OtherImpl的方法了"</span>);</span><br><span class="line">        otherMethod();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// or 对象适配器</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> <span class="keyword">implements</span> <span class="title">IAdaptor</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> IOther other;<span class="comment">// 待适配的接口</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Adapter</span><span class="params">(IOther other)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.other = other;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">adaptorMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"适配器方法，我要去适配IOther接口的方法了"</span>);</span><br><span class="line">        other.otherMethod();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="装饰者模式（包装器模式）decorater"><a href="#装饰者模式（包装器模式）decorater" class="headerlink" title="装饰者模式（包装器模式）decorater"></a>装饰者模式（包装器模式）decorater</h3><p>为了实现某个类在不修改原始类的基础上进行动态的覆盖和增强（方法）<br>该实现依然保持跟原有类（父类）的关系<br>装饰器模式实际上是一种非常特殊的适配器模式，适配器更针对于兼容。  </p>
+<h3 id="装饰者模式（包装器模式）"><a href="#装饰者模式（包装器模式）" class="headerlink" title="装饰者模式（包装器模式）"></a>装饰者模式（包装器模式）</h3><p>为了实现某个类在不修改原始类的基础上进行动态的覆盖和增强（方法）<br>该实现依然保持跟原有类（父类）的关系<br>装饰器模式实际上是一种非常特殊的适配器模式，适配器更针对于兼容。  </p>
 <hr>
 <p>装饰器模式<br>是一种非常特别的适配器模式<br>装饰者和被装饰者都要实现同一个接口，主要目的是为了扩展，依然保留oop关系（Object Oriented Programming 面向对象的程序设计）<br>满足is-a关系<br>注重的是覆盖、扩展  </p>
 <p>适配器模式<br>可以不保留层级关系（上层的可以废弃@Deprecated）<br>适配者和被适配者没有必然的层级联系，通常采用代理或者继承形式进行包装<br>满足has-a关系<br>注重兼容、转换  </p>
@@ -688,7 +688,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#代理模式"><span class="nav-number">1.</span> <span class="nav-text">代理模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂模式"><span class="nav-number">2.</span> <span class="nav-text">工厂模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式"><span class="nav-number">3.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型模式"><span class="nav-number">4.</span> <span class="nav-text">原型模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略模式"><span class="nav-number">5.</span> <span class="nav-text">策略模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板（模板方法）模式"><span class="nav-number">6.</span> <span class="nav-text">模板（模板方法）模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#委派模式"><span class="nav-number">7.</span> <span class="nav-text">委派模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#适配器模式"><span class="nav-number">8.</span> <span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#装饰者模式（包装器模式）decorater"><span class="nav-number">9.</span> <span class="nav-text">装饰者模式（包装器模式）decorater</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#代理模式"><span class="nav-number">1.</span> <span class="nav-text">代理模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂模式"><span class="nav-number">2.</span> <span class="nav-text">工厂模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式"><span class="nav-number">3.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型模式"><span class="nav-number">4.</span> <span class="nav-text">原型模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略模式"><span class="nav-number">5.</span> <span class="nav-text">策略模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板（模板方法）模式"><span class="nav-number">6.</span> <span class="nav-text">模板（模板方法）模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#委派模式"><span class="nav-number">7.</span> <span class="nav-text">委派模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#适配器模式"><span class="nav-number">8.</span> <span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#装饰者模式（包装器模式）"><span class="nav-number">9.</span> <span class="nav-text">装饰者模式（包装器模式）</span></a></li></ol></div>
             
 
           </div>
@@ -882,18 +882,19 @@
 
   <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-   <script type="text/javascript">
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+  <script type="text/javascript">
         var gitalk = new Gitalk({
           clientID: '00966ed6a1095e36e06c',
           clientSecret: 'a489373c7eb0aa10e1ded6fd61a2bd1bd8866072',
           repo: 'blog',
           owner: 'sangyue174',
           admin: ['sangyue174'],
-          id: location.pathname,
+          id: md5(location.pathname), // Ensure uniqueness and length less than 50
           distractionFreeMode: 'true'
         })
         gitalk.render('gitalk-container')           
-       </script>
+  </script>
 
 
   
