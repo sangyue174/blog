@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="HTTPS,网络通信,分布式," />
 
 
 
@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="进击的程序猿">
-<meta name="keywords" content="java">
-<meta property="og:type" content="website">
-<meta property="og:title" content="暴力阿桑">
-<meta property="og:url" content="https://sangyue174.github.io/blog/index.html">
+<meta name="description" content="本文主要来讲http和https在传输或者验证上的差异。 基本概念HTTP，超文本传输协议，通过互联网来传输文档的数据协议。HTTPS，就是在http的基础上增加了一个security，他在http基础之上加入了SSL/TLS协议，SSL/TLS协议依靠证书来保证连接的安全性。HTTP和HTTPS都是位于TCP/IP 网络模型的应用层。 HTTP和HTTPS的区别https协议需要向ca申请证书，">
+<meta name="keywords" content="HTTPS,网络通信,分布式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTPS通信原理分析">
+<meta property="og:url" content="https://sangyue174.github.io/blog/2018/06/06/HTTPS通信原理分析/index.html">
 <meta property="og:site_name" content="暴力阿桑">
-<meta property="og:description" content="进击的程序猿">
+<meta property="og:description" content="本文主要来讲http和https在传输或者验证上的差异。 基本概念HTTP，超文本传输协议，通过互联网来传输文档的数据协议。HTTPS，就是在http的基础上增加了一个security，他在http基础之上加入了SSL/TLS协议，SSL/TLS协议依靠证书来保证连接的安全性。HTTP和HTTPS都是位于TCP/IP 网络模型的应用层。 HTTP和HTTPS的区别https协议需要向ca申请证书，">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.github.com/sangyue174/pic/raw/master/md/2018/6/6/clipboard.png">
+<meta property="og:updated_time" content="2018-06-06T07:42:03.692Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="暴力阿桑">
-<meta name="twitter:description" content="进击的程序猿">
+<meta name="twitter:title" content="HTTPS通信原理分析">
+<meta name="twitter:description" content="本文主要来讲http和https在传输或者验证上的差异。 基本概念HTTP，超文本传输协议，通过互联网来传输文档的数据协议。HTTPS，就是在http的基础上增加了一个security，他在http基础之上加入了SSL/TLS协议，SSL/TLS协议依靠证书来保证连接的安全性。HTTP和HTTPS都是位于TCP/IP 网络模型的应用层。 HTTP和HTTPS的区别https协议需要向ca申请证书，">
+<meta name="twitter:image" content="https://www.github.com/sangyue174/pic/raw/master/md/2018/6/6/clipboard.png">
 
 
 
@@ -119,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://sangyue174.github.io/blog/"/>
+  <link rel="canonical" href="https://sangyue174.github.io/blog/2018/06/06/HTTPS通信原理分析/"/>
 
 
 
 
 
-  <title>暴力阿桑</title>
+  <title>HTTPS通信原理分析 | 暴力阿桑</title>
   
 
 
@@ -154,8 +157,7 @@
     
   
 
-  <div class="container sidebar-position-right 
-  page-home">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -268,9 +270,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -300,9 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018/06/06/HTTPS通信原理分析/" itemprop="url">HTTPS通信原理分析</a></h1>
+          <h1 class="post-title" itemprop="name headline">HTTPS通信原理分析</h1>
         
 
         <div class="post-meta">
@@ -427,19 +427,33 @@
       
 
       
-        
-          
-          本文主要来讲http和https在传输或者验证上的差异。
-基本概念HTTP，超文本传输协议，通过互联网来传输文档的数据协议。HTTPS，就是在http的基础上增加了一个security，他在http基础之上加入了SSL/TLS协议，SSL/TLS协议依靠证书来保证连接的安全性。HTTP和HTTPS都
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2018/06/06/HTTPS通信原理分析/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <p>本文主要来讲http和https在传输或者验证上的差异。</p>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>HTTP，超文本传输协议，通过互联网来传输文档的数据协议。<br>HTTPS，就是在http的基础上增加了一个security，他在http基础之上加入了SSL/TLS协议，SSL/TLS协议依靠证书来保证连接的安全性。<br>HTTP和HTTPS都是位于TCP/IP 网络模型的应用层。<br><img src="https://www.github.com/sangyue174/pic/raw/master/md/2018/6/6/clipboard.png" alt="HTTP和HTTPS模型"></p>
+<h3 id="HTTP和HTTPS的区别"><a href="#HTTP和HTTPS的区别" class="headerlink" title="HTTP和HTTPS的区别"></a>HTTP和HTTPS的区别</h3><p>https协议需要向ca申请证书，需要承担一部分费用。<br>http超文本传输，信息是明文的，https是具有安全性的ssl加密传输协议。<br>采用不同的连接方式，端口也不同，http使用80，https使用443。</p>
+<h3 id="HTTPS出现的原因"><a href="#HTTPS出现的原因" class="headerlink" title="HTTPS出现的原因"></a>HTTPS出现的原因</h3><p>咱们平时使用http时信息都是明文传递的，即便是采取对消息加密的方式，都可以被中间人在请求开始或者中间拿到加密密钥来导致通信不安全，不管是通过对称加密还是非对称加密，都需要在开始时协商密钥。</p>
+<h3 id="HTTPS的工作原理"><a href="#HTTPS的工作原理" class="headerlink" title="HTTPS的工作原理"></a>HTTPS的工作原理</h3><p>这一部分是https非常核心的内容。<br>涉及到的关键词：<strong><em>ca机构，数字证书，签名，消息摘要，对称加密，非对称加密</em></strong><br>关键词介绍：</p>
+<ul>
+<li><strong>ca机构</strong>是一个大家公认的证书颁发机构，它用来颁布ca证书（数字证书）</li>
+<li><strong>数字证书</strong>是ca机构签发的，也成为ca证书。各个服务器或网站向ca机构提申请，来获得数字证书，当然需要一部分费用。然后这个证书会随着https请求来发送给客户端，可以用浏览器中的内置的证书公钥来解析判断数据的正确性。</li>
+<li><strong>消息摘要</strong>是ca机构对服务器提供的一些信息进行hash操作得到的值。</li>
+<li><strong>签名</strong>在数字证书中，主要是ca机构用私钥对消息摘要加密后的结果。</li>
+<li><strong>对称加密，非对称加密</strong>是在整个交互过程中，需要用到的加密方式。</li>
+</ul>
+<p>附图说一下整个工作流程（图中讲的非常细致，就不在文中重复说明了）</p>
+<iframe id="embed_dom" name="embed_dom" frameborder="0" style="margin:0px auto;display:block;width:700px; height:350px;" src="https://www.processon.com/embed/5b14c383e4b07596cf3c3c38"></iframe>
+
+<p><a href="https://www.processon.com/view/link/5b14c383e4b02e4b26f32fd7" target="_blank" rel="noopener">在线地址</a></p>
+<h3 id="简单总结（省去了细节的加密方式以及一些验证方式）"><a href="#简单总结（省去了细节的加密方式以及一些验证方式）" class="headerlink" title="简单总结（省去了细节的加密方式以及一些验证方式）"></a>简单总结（省去了细节的加密方式以及一些验证方式）</h3><ol>
+<li>客户端发送请求到服务端，服务端用非对称加密算法生成一对s.public和s.private。</li>
+<li>将必要的网站信息发送给CA，CA通过一个hash算法对这些信息生成消息摘要，用自己的私钥对消息摘要加密，生成数字签名，原始信息和数字签名合并生成数字证书。</li>
+<li>服务端把数字证书发送给客户端，客户端用内置的CA公钥对数字签名解密，得到消息摘要，并且用同样的Hash算法对原始信息进行加密生成消息摘要，然后两者对比，查看是否一样。如果一样则代表网站安全，不一样则会提示不安全站点。</li>
+<li>最终得到服务端的s.public，客户端生成一个随机数c.public，并且用s.public对公钥加密，然后发送给服务端。</li>
+<li>服务端用自己的s.private进行解密得到s.public，这样服务端和客户端就能进行加密发送消息了。</li>
+</ol>
+<blockquote>
+<p>参考链接<br><a href="https://www.jianshu.com/p/b0b6b88fe9fe" target="_blank" rel="noopener">https://www.jianshu.com/p/b0b6b88fe9fe</a><br><a href="https://www.linuxidc.com/Linux/2016-05/131147.htm" target="_blank" rel="noopener">https://www.linuxidc.com/Linux/2016-05/131147.htm</a><br><a href="https://www.zhihu.com/question/37370216" target="_blank" rel="noopener">https://www.zhihu.com/question/37370216</a></p>
+</blockquote>
+
       
     </div>
     
@@ -447,397 +461,114 @@
     
 	<div>
 	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
 	</div>
 	<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/blog/2018/06/06/HTTPS通信原理分析/">HTTPS通信原理分析</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 阿桑 的个人博客">阿桑</a></p>
+  <p><span>发布时间:</span>2018年06月06日 - 15:06</p>
+  <p><span>最后更新:</span>2018年06月06日 - 15:06</p>
+  <p><span>原始链接:</span><a href="/blog/2018/06/06/HTTPS通信原理分析/" title="HTTPS通信原理分析">https://sangyue174.github.io/blog/2018/06/06/HTTPS通信原理分析/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://sangyue174.github.io/blog/2018/06/06/HTTPS通信原理分析/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
       
 	</div>
 	
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持是对我最大的鼓励！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/blog/images/alipay.png" alt="阿桑 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sangyue174.github.io/blog/blog/2018/06/01/设计模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="阿桑">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/logo.svg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="暴力阿桑">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018/06/01/设计模式/" itemprop="url">设计模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-01T14:56:27+08:00">
-                2018-06-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Java基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Java基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/blog/tags/HTTPS/" rel="tag"><i class="fa fa-tag"></i> HTTPS</a>
           
-
+            <a href="/blog/tags/网络通信/" rel="tag"><i class="fa fa-tag"></i> 网络通信</a>
           
-            
+            <a href="/blog/tags/分布式/" rel="tag"><i class="fa fa-tag"></i> 分布式</a>
           
-
-          
-          
-             <span id="/blog/2018/06/01/设计模式/" class="leancloud_visitors" data-flag-title="设计模式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3,514
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  12
-                </span>
-              
-            </div>
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          代理模式特点： 1.执行者、被代理人（执行者就是代理人（媒婆），被代理人就是原操作者（相亲人）） 2.对于被代理人来说，这件事情一定是要做的，但是自己有不想做或者没有时间做（不专业），这时候就要找代理。 3.需要获取到被代理人的个人资料（执行者需要持有被代理对象的引用）。 代理模式关心的过程，不是结
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2018/06/01/设计模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/06/01/设计模式/" rel="next" title="设计模式">
+                <i class="fa fa-chevron-left"></i> 设计模式
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-	<div>
-	  
-	</div>
-	<div>
-      
-	</div>
-	
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sangyue174.github.io/blog/blog/2018/05/25/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="阿桑">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/logo.svg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="暴力阿桑">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018/05/25/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-25T18:03:19+08:00">
-                2018-05-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/blog/2018/05/25/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  78
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2018/05/25/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-	<div>
-	  
-	</div>
-	<div>
-      
-	</div>
-	
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -847,10 +578,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -858,6 +590,12 @@
 
 
           
+
+  
+	 <div id="gitalk-container"></div>
+  
+
+
 
         </div>
         
@@ -878,8 +616,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -959,6 +706,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP和HTTPS的区别"><span class="nav-number">2.</span> <span class="nav-text">HTTP和HTTPS的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPS出现的原因"><span class="nav-number">3.</span> <span class="nav-text">HTTPS出现的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPS的工作原理"><span class="nav-number">4.</span> <span class="nav-text">HTTPS的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单总结（省去了细节的加密方式以及一些验证方式）"><span class="nav-number">5.</span> <span class="nav-text">简单总结（省去了细节的加密方式以及一些验证方式）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1123,6 +886,10 @@
   
 
   
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1163,6 +930,22 @@
 
 
 
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+  <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '00966ed6a1095e36e06c',
+          clientSecret: 'a489373c7eb0aa10e1ded6fd61a2bd1bd8866072',
+          repo: 'blog',
+          owner: 'sangyue174',
+          admin: ['sangyue174'],
+          id: md5(location.pathname), // Ensure uniqueness and length less than 50
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+  </script>
 
 
   
