@@ -88,7 +88,7 @@
 <meta property="og:description" content="本文主要来讲http和https在传输或者验证上的差异。 基本概念HTTP，超文本传输协议，通过互联网来传输文档的数据协议。HTTPS，就是在http的基础上增加了一个security，他在http基础之上加入了SSL/TLS协议，SSL/TLS协议依靠证书来保证连接的安全性。HTTP和HTTPS都是位于TCP/IP 网络模型的应用层。 HTTP和HTTPS的区别https协议需要向ca申请证书，">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.github.com/sangyue174/pic/raw/master/md/2018/6/6/clipboard.png">
-<meta property="og:updated_time" content="2018-06-06T07:42:03.692Z">
+<meta property="og:updated_time" content="2018-06-06T07:51:37.855Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTPS通信原理分析">
 <meta name="twitter:description" content="本文主要来讲http和https在传输或者验证上的差异。 基本概念HTTP，超文本传输协议，通过互联网来传输文档的数据协议。HTTPS，就是在http的基础上增加了一个security，他在http基础之上加入了SSL/TLS协议，SSL/TLS协议依靠证书来保证连接的安全性。HTTP和HTTPS都是位于TCP/IP 网络模型的应用层。 HTTP和HTTPS的区别https协议需要向ca申请证书，">
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  878
+                  881
                 </span>
               
 
@@ -442,7 +442,7 @@
 <p>附图说一下整个工作流程（图中讲的非常细致，就不在文中重复说明了）</p>
 <iframe id="embed_dom" name="embed_dom" frameborder="0" style="margin:0px auto;display:block;width:700px; height:350px;" src="https://www.processon.com/embed/5b14c383e4b07596cf3c3c38"></iframe>
 
-<p><a href="https://www.processon.com/view/link/5b14c383e4b02e4b26f32fd7" target="_blank" rel="noopener">在线地址</a></p>
+<p><a href="https://www.processon.com/view/link/5b14c383e4b02e4b26f32fd7" target="_blank" rel="noopener">https://www.processon.com/view/link/5b14c383e4b02e4b26f32fd7</a></p>
 <h3 id="简单总结（省去了细节的加密方式以及一些验证方式）"><a href="#简单总结（省去了细节的加密方式以及一些验证方式）" class="headerlink" title="简单总结（省去了细节的加密方式以及一些验证方式）"></a>简单总结（省去了细节的加密方式以及一些验证方式）</h3><ol>
 <li>客户端发送请求到服务端，服务端用非对称加密算法生成一对s.public和s.private。</li>
 <li>将必要的网站信息发送给CA，CA通过一个hash算法对这些信息生成消息摘要，用自己的私钥对消息摘要加密，生成数字签名，原始信息和数字签名合并生成数字证书。</li>
