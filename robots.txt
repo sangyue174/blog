@@ -3,12 +3,12 @@ User-agent: *
 Allow: /
 Allow: /archives/
 
-Disallow: /vendors/
+Disallow: /images/
 Disallow: /js/
 Disallow: /css/
 Disallow: /fonts/
-Disallow: /vendors/
-Disallow: /fancybox/
+Disallow: /about/
+Disallow: /board/
 
 Sitemap: https://sangyue174.github.io/sitemap.xml
 Sitemap: https://sangyue174.github.io/baidusitemap.xml
